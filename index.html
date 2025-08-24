@@ -1,13 +1,391 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>VikingVault</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VikingVault - Forging Digital Realms</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Animated background particles */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 20s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.4;
+            }
+            90% {
+                opacity: 0.4;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            text-align: center;
+            z-index: 10;
+            padding: 2rem;
+            animation: fadeIn 1.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            animation: pulse 2s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            background: linear-gradient(45deg, #fff, #e0e0e0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tagline {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            letter-spacing: 1px;
+        }
+
+        .status {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 600px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: slideUp 1.5s ease-out 0.5s both;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .status h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #ffa500;
+            text-shadow: 0 0 20px rgba(255, 165, 0, 0.5);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 1.5rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ffa500, #ff6b6b);
+            border-radius: 15px;
+            width: 65%;
+            animation: load 2s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            );
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        @keyframes load {
+            from {
+                width: 0;
+            }
+            to {
+                width: 65%;
+            }
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .service {
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .service:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .service-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-name {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .coming-soon {
+            font-size: 1.1rem;
+            opacity: 0.7;
+            margin-top: 2rem;
+            font-style: italic;
+        }
+
+        .norse-rune {
+            position: absolute;
+            opacity: 0.05;
+            font-size: 10rem;
+            animation: rotate 60s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .rune-1 {
+            top: 10%;
+            left: 10%;
+        }
+
+        .rune-2 {
+            top: 20%;
+            right: 15%;
+            animation-duration: 80s;
+        }
+
+        .rune-3 {
+            bottom: 20%;
+            left: 20%;
+            animation-duration: 100s;
+        }
+
+        .hammer {
+            display: inline-block;
+            animation: hammer 1s ease-in-out infinite;
+        }
+
+        @keyframes hammer {
+            0%, 100% {
+                transform: rotate(-5deg);
+            }
+            50% {
+                transform: rotate(5deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            .logo {
+                font-size: 3.5rem;
+            }
+            .services {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>⚔️ VikingVault ⚔️</h1>
-    <p>Homelab Infrastructure & Game Servers</p>
-    <p>Coming Soon...</p>
+    <!-- Animated particles background -->
+    <div class="particles">
+        <div class="particle" style="width: 6px; height: 6px; left: 10%; animation-delay: 0s;"></div>
+        <div class="particle" style="width: 4px; height: 4px; left: 20%; animation-delay: 2s;"></div>
+        <div class="particle" style="width: 8px; height: 8px; left: 30%; animation-delay: 4s;"></div>
+        <div class="particle" style="width: 5px; height: 5px; left: 40%; animation-delay: 6s;"></div>
+        <div class="particle" style="width: 7px; height: 7px; left: 50%; animation-delay: 8s;"></div>
+        <div class="particle" style="width: 4px; height: 4px; left: 60%; animation-delay: 10s;"></div>
+        <div class="particle" style="width: 6px; height: 6px; left: 70%; animation-delay: 12s;"></div>
+        <div class="particle" style="width: 8px; height: 8px; left: 80%; animation-delay: 14s;"></div>
+        <div class="particle" style="width: 5px; height: 5px; left: 90%; animation-delay: 16s;"></div>
+    </div>
+
+    <!-- Norse runes in background -->
+    <div class="norse-rune rune-1">ᚱ</div>
+    <div class="norse-rune rune-2">ᚦ</div>
+    <div class="norse-rune rune-3">ᚨ</div>
+
+    <div class="container">
+        <div class="logo">
+            <span class="hammer">⚔️</span>
+        </div>
+        <h1>VikingVault</h1>
+        <p class="tagline">Forging Digital Realms in the Halls of Silicon</p>
+        
+        <div class="status">
+            <h2>🔨 Under Construction 🔨</h2>
+            <p style="margin-bottom: 1rem;">The forge is hot, the servers are being assembled...</p>
+            
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+            
+            <p style="margin-bottom: 1.5rem;">Infrastructure Build Progress: 65%</p>
+            
+            <div class="services">
+                <div class="service">
+                    <div class="service-icon">⚡</div>
+                    <div class="service-name">Thor Node</div>
+                </div>
+                <div class="service">
+                    <div class="service-icon">👁️</div>
+                    <div class="service-name">Odin Node</div>
+                </div>
+                <div class="service">
+                    <div class="service-icon">☸️</div>
+                    <div class="service-name">Kubernetes</div>
+                </div>
+                <div class="service">
+                    <div class="service-icon">🎮</div>
+                    <div class="service-name">Game Servers</div>
+                </div>
+                <div class="service">
+                    <div class="service-icon">📊</div>
+                    <div class="service-name">Monitoring</div>
+                </div>
+                <div class="service">
+                    <div class="service-icon">🔒</div>
+                    <div class="service-name">VPN Access</div>
+                </div>
+            </div>
+            
+            <p class="coming-soon">
+                "By Odin's wisdom and Thor's might,<br>
+                The digital realm shall soon see light."
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Add some dynamic elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate progress occasionally
+            setInterval(() => {
+                const fill = document.querySelector('.progress-fill');
+                const current = parseInt(fill.style.width || '65');
+                if (current < 70) {
+                    fill.style.width = (current + 1) + '%';
+                }
+            }, 30000);
+
+            // Add random particle generation
+            setInterval(() => {
+                if (document.querySelectorAll('.particle').length < 15) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.width = Math.random() * 10 + 'px';
+                    particle.style.height = particle.style.width;
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.animationDelay = '0s';
+                    particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                    document.querySelector('.particles').appendChild(particle);
+                    
+                    setTimeout(() => particle.remove(), 20000);
+                }
+            }, 2000);
+        });
+    </script>
 </body>
 </html>
