@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VikingVault - Forging Digital Realms</title>
+    <title>VikingVault - Enter the Digital Halls</title>
     <style>
         * {
             margin: 0;
@@ -15,9 +15,6 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             color: white;
             overflow-x: hidden;
             position: relative;
@@ -60,12 +57,17 @@
         }
 
         .container {
-            text-align: center;
-            z-index: 10;
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        header {
+            text-align: center;
+            padding: 4rem 0 2rem;
             animation: fadeIn 1.5s ease-in;
-            margin: 2rem auto;
-            max-width: 100%;
         }
 
         @keyframes fadeIn {
@@ -114,15 +116,14 @@
             letter-spacing: 1px;
         }
 
-        .status {
+        .section {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             border-radius: 15px;
             padding: 2rem;
-            margin: 2rem auto;
-            max-width: 600px;
+            margin: 2rem 0;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            animation: slideUp 1.5s ease-out 0.5s both;
+            animation: slideUp 1.5s ease-out;
         }
 
         @keyframes slideUp {
@@ -136,136 +137,134 @@
             }
         }
 
-        .status h2 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
             color: #ffa500;
             text-shadow: 0 0 20px rgba(255, 165, 0, 0.5);
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 30px;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 15px;
-            overflow: hidden;
-            margin: 1.5rem 0;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #ffa500, #ff6b6b);
-            border-radius: 15px;
-            width: 65%;
-            animation: load 2s ease-out;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .progress-fill::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(255, 255, 255, 0.3),
-                transparent
-            );
-            animation: shimmer 2s infinite;
-        }
-
-        @keyframes shimmer {
-            0% {
-                transform: translateX(-100%);
-            }
-            100% {
-                transform: translateX(100%);
-            }
-        }
-
-        @keyframes load {
-            from {
-                width: 0;
-            }
-            to {
-                width: 65%;
-            }
-        }
-
-        .services {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            display: flex;
+            align-items: center;
             gap: 1rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
             margin-top: 2rem;
         }
 
-        .service {
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.05);
+        .service-card {
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.2);
             border-radius: 10px;
             transition: all 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .service:hover {
-            background: rgba(255, 255, 255, 0.1);
+        .service-card:hover {
+            background: rgba(255, 255, 255, 0.15);
             transform: translateY(-5px);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         .service-icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
         }
 
         .service-name {
-            font-size: 0.9rem;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-desc {
+            font-size: 0.95rem;
             opacity: 0.8;
+            line-height: 1.4;
+        }
+
+        .mythology-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .myth-card {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .myth-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.05);
+        }
+
+        .rune {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            color: #ffa500;
+        }
+
+        .rune-name {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+        }
+
+        .rune-meaning {
+            font-size: 0.85rem;
+            opacity: 0.7;
         }
 
         .coming-soon {
-            font-size: 1.1rem;
-            opacity: 0.7;
-            margin-top: 2rem;
+            text-align: center;
+            padding: 3rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        .countdown {
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            opacity: 0.8;
+        }
+
+        .quote {
             font-style: italic;
+            font-size: 1.1rem;
+            text-align: center;
+            padding: 2rem;
+            opacity: 0.9;
+            line-height: 1.6;
         }
 
-        .norse-rune {
-            position: fixed;
-            opacity: 0.05;
-            font-size: 10rem;
-            animation: rotate 60s linear infinite;
-            pointer-events: none;
+        footer {
+            text-align: center;
+            padding: 2rem;
+            opacity: 0.7;
+            font-size: 0.9rem;
         }
 
-        @keyframes rotate {
-            from {
-                transform: rotate(0deg);
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
             }
-            to {
-                transform: rotate(360deg);
+            .logo {
+                font-size: 3.5rem;
             }
-        }
-
-        .rune-1 {
-            top: 10%;
-            left: 10%;
-        }
-
-        .rune-2 {
-            top: 20%;
-            right: 15%;
-            animation-duration: 80s;
-        }
-
-        .rune-3 {
-            bottom: 20%;
-            left: 20%;
-            animation-duration: 100s;
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .mythology-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         .hammer {
@@ -279,18 +278,6 @@
             }
             50% {
                 transform: rotate(5deg);
-            }
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-            .logo {
-                font-size: 3.5rem;
-            }
-            .services {
-                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
@@ -309,74 +296,144 @@
         <div class="particle" style="width: 5px; height: 5px; left: 90%; animation-delay: 16s;"></div>
     </div>
 
-    <!-- Norse runes in background -->
-    <div class="norse-rune rune-1">ᚱ</div>
-    <div class="norse-rune rune-2">ᚦ</div>
-    <div class="norse-rune rune-3">ᚨ</div>
-
     <div class="container">
-        <div class="logo">
-            <span class="hammer">⚔️</span>
-        </div>
-        <h1>VikingVault</h1>
-        <p class="tagline">Forging Digital Realms in the Halls of Silicon</p>
-        
-        <div class="status">
-            <h2>🔨 Under Construction 🔨</h2>
-            <p style="margin-bottom: 1rem;">The forge is hot, the servers are being assembled...</p>
-            
-            <div class="progress-bar">
-                <div class="progress-fill"></div>
+        <header>
+            <div class="logo">
+                <span class="hammer">⚔️</span>
             </div>
+            <h1>VikingVault</h1>
+            <p class="tagline">Where Norse Legends Meet Digital Adventures</p>
+        </header>
+
+        <section class="section">
+            <h2>⚡ Coming Realms</h2>
+            <p style="margin-bottom: 1.5rem;">Prepare to enter digital worlds forged in the spirit of Viking exploration and conquest.</p>
             
-            <p style="margin-bottom: 1.5rem;">Infrastructure Build Progress: 65%</p>
-            
-            <div class="services">
-                <div class="service">
-                    <div class="service-icon">⚡</div>
-                    <div class="service-name">Thor Node</div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">⛏️</div>
+                    <div class="service-name">Survival Worlds</div>
+                    <div class="service-desc">Craft, build, and survive in persistent worlds where your creations become legend.</div>
                 </div>
-                <div class="service">
-                    <div class="service-icon">👁️</div>
-                    <div class="service-name">Odin Node</div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🏭</div>
+                    <div class="service-name">Factory Realms</div>
+                    <div class="service-desc">Engineer massive production lines and automate your path to industrial dominance.</div>
                 </div>
-                <div class="service">
-                    <div class="service-icon">☸️</div>
-                    <div class="service-name">Kubernetes</div>
+                
+                <div class="service-card">
+                    <div class="service-icon">⚔️</div>
+                    <div class="service-name">Battle Arenas</div>
+                    <div class="service-desc">Test your mettle in competitive combat where only the strongest warriors prevail.</div>
                 </div>
-                <div class="service">
-                    <div class="service-icon">🎮</div>
-                    <div class="service-name">Game Servers</div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🗺️</div>
+                    <div class="service-name">Adventure Maps</div>
+                    <div class="service-desc">Explore custom-crafted worlds filled with quests, dungeons, and treasures.</div>
                 </div>
-                <div class="service">
-                    <div class="service-icon">📊</div>
-                    <div class="service-name">Monitoring</div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🎭</div>
+                    <div class="service-name">Creative Haven</div>
+                    <div class="service-desc">Unlimited resources to bring your architectural dreams to life.</div>
                 </div>
-                <div class="service">
-                    <div class="service-icon">🔒</div>
-                    <div class="service-name">VPN Access</div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🌍</div>
+                    <div class="service-name">Community Hub</div>
+                    <div class="service-desc">Connect with fellow Vikings, share stories, and plan your next conquest.</div>
                 </div>
             </div>
+        </section>
+
+        <section class="section">
+            <h2>🛡️ The Nine Realms of Norse Mythology</h2>
+            <p style="margin-bottom: 1.5rem;">Our digital worlds draw inspiration from the ancient Norse cosmology.</p>
             
-            <p class="coming-soon">
-                "By Odin's wisdom and Thor's might,<br>
-                The digital realm shall soon see light."
-            </p>
+            <div class="mythology-grid">
+                <div class="myth-card">
+                    <div class="rune">ᚨ</div>
+                    <div class="rune-name">Asgard</div>
+                    <div class="rune-meaning">Realm of the Æsir gods</div>
+                </div>
+                
+                <div class="myth-card">
+                    <div class="rune">ᛗ</div>
+                    <div class="rune-name">Midgard</div>
+                    <div class="rune-meaning">The world of humanity</div>
+                </div>
+                
+                <div class="myth-card">
+                    <div class="rune">ᚹ</div>
+                    <div class="rune-name">Vanaheim</div>
+                    <div class="rune-meaning">Home of the Vanir gods</div>
+                </div>
+                
+                <div class="myth-card">
+                    <div class="rune">ᛃ</div>
+                    <div class="rune-name">Jotunheim</div>
+                    <div class="rune-meaning">Land of the giants</div>
+                </div>
+                
+                <div class="myth-card">
+                    <div class="rune">ᚨ</div>
+                    <div class="rune-name">Alfheim</div>
+                    <div class="rune-meaning">Domain of the light elves</div>
+                </div>
+                
+                <div class="myth-card">
+                    <div class="rune">ᛋ</div>
+                    <div class="rune-name">Svartalfheim</div>
+                    <div class="rune-meaning">Realm of the dwarves</div>
+                </div>
+                
+                <div class="myth-card">
+                    <div class="rune">ᚺ</div>
+                    <div class="rune-name">Helheim</div>
+                    <div class="rune-meaning">Land of the departed</div>
+                </div>
+                
+                <div class="myth-card">
+                    <div class="rune">ᚠ</div>
+                    <div class="rune-name">Muspelheim</div>
+                    <div class="rune-meaning">Realm of fire</div>
+                </div>
+                
+                <div class="myth-card">
+                    <div class="rune">ᚾ</div>
+                    <div class="rune-name">Niflheim</div>
+                    <div class="rune-meaning">World of ice and mist</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>⚒️ The Forge</h2>
+            <div class="coming-soon">
+                <p style="font-size: 1.2rem; margin-bottom: 1rem;">The digital forge fires are being stoked...</p>
+                <p style="opacity: 0.8;">Master smiths are crafting servers worthy of Valhalla's halls.</p>
+                <p style="opacity: 0.8;">Each realm is being carefully forged to provide epic adventures.</p>
+                <div class="countdown">Estimated completion: Soon™</div>
+            </div>
+        </section>
+
+        <div class="quote">
+            "From the ashes of Ragnarök rises a new world.<br>
+            Not of earth and stone, but of silicon and light.<br>
+            Where modern Vikings gather to forge legends anew."
         </div>
+
+        <footer>
+            <p>VikingVault © 2024 | Digital realms inspired by Norse mythology</p>
+            <p style="margin-top: 0.5rem; font-size: 0.8rem;">May your ping be low and your FPS high</p>
+        </footer>
     </div>
 
     <script>
         // Add some dynamic elements
         document.addEventListener('DOMContentLoaded', function() {
-            // Animate progress occasionally
-            setInterval(() => {
-                const fill = document.querySelector('.progress-fill');
-                const current = parseInt(fill.style.width || '65');
-                if (current < 70) {
-                    fill.style.width = (current + 1) + '%';
-                }
-            }, 30000);
-
             // Add random particle generation
             setInterval(() => {
                 if (document.querySelectorAll('.particle').length < 15) {
@@ -392,6 +449,20 @@
                     setTimeout(() => particle.remove(), 20000);
                 }
             }, 2000);
+
+            // Rotate through different Norse quotes
+            const quotes = [
+                "From the ashes of Ragnarök rises a new world.<br>Not of earth and stone, but of silicon and light.<br>Where modern Vikings gather to forge legends anew.",
+                "The All-Father Odin gave his eye for wisdom.<br>We offer our time to master the digital arts.<br>Join us in the halls of eternal uptime.",
+                "In Valhalla, warriors feast and fight eternal.<br>In VikingVault, gamers build and battle forever.<br>The spirit remains, only the realm has changed.",
+                "Thor's hammer shaped mountains and valleys.<br>Our keyboards shape worlds of infinite possibility.<br>Different tools, same creative thunder."
+            ];
+            
+            let quoteIndex = 0;
+            setInterval(() => {
+                quoteIndex = (quoteIndex + 1) % quotes.length;
+                document.querySelector('.quote').innerHTML = quotes[quoteIndex];
+            }, 10000);
         });
     </script>
 </body>
