@@ -4,7 +4,7 @@ metadata:
   name: vikingvault-website
   namespace: website
   annotations:
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"  # If you have cert-manager
+    cert-manager.io/cluster-issuer: "letsencrypt-staging"  # If you have cert-manager
     traefik.ingress.kubernetes.io/router.entrypoints: web,websecure
     traefik.ingress.kubernetes.io/router.tls: "true"
 spec:
