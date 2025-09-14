@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: vikingvault-website
+  namespace: website
+spec:
+  type: ClusterIP
+  selector:
+    app: vikingvault-website
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+    name: http

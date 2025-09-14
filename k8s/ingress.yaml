@@ -1,0 +1,36 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: vikingvault-website
+  namespace: website
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"  # If you have cert-manager
+    traefik.ingress.kubernetes.io/router.entrypoints: web,websecure
+    traefik.ingress.kubernetes.io/router.tls: "true"
+spec:
+  rules:
+  - host: vikingvault.dev
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: vikingvault-website
+            port:
+              number: 80
+  - host: www.vikingvault.dev
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: vikingvault-website
+            port:
+              number: 80
+  tls:
+  - hosts:
+    - vikingvault.dev
+    - www.vikingvault.dev
+    secretName: vikingvault-tls
