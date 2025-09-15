@@ -1,0 +1,36 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: vikingvault-website
+  namespace: website
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-staging"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: vikingvault.dev
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: vikingvault-website
+            port:
+              number: 80
+  - host: www.vikingvault.dev
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: vikingvault-website
+            port:
+              number: 80
+  tls:
+  - hosts:
+    - vikingvault.dev
+    - www.vikingvault.dev
+    secretName: vikingvault-tls
